@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    
+   <!--<div class="content">
+          <div class="product">
+            <img class="product__img" src="images/mango_Image.png" alt="mango_Image.png">
+            <div class="product__description">
+                <div class="heading">
+                    <a class="product__title" href="#">MANGO PEOPLE <br> T-SHIRT</a>
+                </div>
+                    <p class="product__text">Price: 
+                        <span class="text_span_currency">$</span>
+                        <span class="text_span_price">$300</span></p>
+                    <p class="product__text">Color: <span class="text_span_color">Red</span></p>
+                    <p class="product__text">Size: <span class="text_span_color">Xl</span></p>
+                    <p class="product__text">Quantity: <input class="product__input" type="number"></p>
+            </div>
+        </div>
+
+        <div class="product">
+            <img class="product__img" src="images/mango_Image.png" alt="mango_Image.png">
+            <div class="product__description">
+                <div class="heading">
+                    <a class="product__title" href="#">MANGO PEOPLE <br> T-SHIRT</a>
+                </div>
+                    <p class="product__text">Price: <span class="text_span_price">$300</span></p>
+                    <p class="product__text">Color: <span class="text_span_color">Red</span></p>
+                    <p class="product__text">Size: <span class="text_span_color">Xl</span></p>
+                    <p class="product__text">Quantity: <input class="product__input" type="number"></p>
+            </div>
+        </div> 
+       
+    </div>-->
+    <div class="content"></div>
+    <script src="data.js"></script>
+    <script>
+
+        // взяли данные из js
+        const dataProductsJS = JSON.parse(dataProducts);
+
+        const contentEl = document.querySelector('.content');
+
+        dataProductsJS.forEach(product => {
+            const productEl = document.createElement('div');
+            productEl.classList.add('product');
+            
+
+            const imageEl = document.createElement('img');
+            imageEl.classList.add('product__img');
+            imageEl.src = product.image;
+            const altImage = `image`;
+            imageEl.setAttribute('alt', altImage); 
+
+            const productDescriptionEl = document.createElement('div');
+            productDescriptionEl.classList.add('product__description');
+
+            const headingEl = document.createElement('div');
+            headingEl.classList.add('heading');
+
+            const titleEl = document.createElement('a');
+            titleEl.classList.add('product__title');
+            titleEl.href = "#";
+            titleEl.textContent = product.title;
+
+            const pEl = document.createElement('p');
+            pEl.classList.add('product__text');
+            const spanEl = document.createElement('span');
+            spanEl.classList.add('text_span_price');
+            spanEl.textContent = `${product.currency} ${product.Price}`;
+            pEl.textContent = "Price: ";
+            pEl.appendChild(spanEl);
+
+            const pColorEl = document.createElement('p');
+            pColorEl.classList.add('product__text');
+            const spanColorEl = document.createElement('span');
+            spanColorEl.classList.add('text_span_color');
+            spanColorEl.textContent = `${product.Color}`;
+            pColorEl.textContent = "Color: ";
+            pColorEl.appendChild(spanColorEl);
+
+            const pSizeEl = document.createElement('p');
+            pSizeEl.classList.add('product__text');
+            const spanSizeEl = document.createElement('span');
+            spanSizeEl.classList.add('text_span_color');
+            spanSizeEl.textContent = `${product.Size}`;
+            pSizeEl.textContent = "Size: ";
+            pSizeEl.appendChild(spanSizeEl);
+
+            const pQuantityEl = document.createElement('p');
+            pQuantityEl.classList.add('product__text');
+            const inputQuantityEl = document.createElement('input');
+            inputQuantityEl.classList.add('product__input');
+            inputQuantityEl.type = "number";
+            inputQuantityEl.value = product.Quantity;
+            pQuantityEl.textContent = "Quantity: ";
+            pQuantityEl.appendChild(inputQuantityEl);
+
+
+            contentEl.appendChild(productEl);
+            productEl.appendChild(imageEl);
+            productEl.appendChild(productDescriptionEl);
+            productDescriptionEl.appendChild(headingEl);
+            headingEl.appendChild(titleEl);
+            productDescriptionEl.appendChild(pEl);
+            productDescriptionEl.appendChild(pColorEl);
+            productDescriptionEl.appendChild(pSizeEl);
+            productDescriptionEl.appendChild(pQuantityEl);
+
+        });
+
+    </script>
+
+
+</body>
+</html>
