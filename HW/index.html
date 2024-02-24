@@ -9,126 +9,85 @@
 </head>
 <body>
 
-    <!-- <div class="content">
-        <h1 class="title">Fetured Items</h1>
-        <p class="title_text">Shop for items based on what we featured in this week</p>
-
-        <div class="products">
-            
-            <div class="product">
-                <img class="product_img" src="images/men1.jpg" alt="images first_men">
-               <div class="product__description">
-                    <a class="product_a" href="#">ELLERY X M'O CAPSULE</a>
-                    <p class="product_text">Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</p>
-                    <p class="product_price">$52.00</p>
-               </div>
-            </div>
-            <div class="product">
-                <img class="product_img" src="images/gerl.png" alt="images first_men">
-                <div class="product__description">
-                    <a class="product_a" href="#">ELLERY X M'O CAPSULE</a>
-                    <p class="product_text">Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</p>
-                    <p class="product_price">$52.00</p>
-               </div>
-            </div>
-            <div class="product">
-                <img class="product_img" src="images/men2.png" alt="images first_men">
-                <div class="product__description">
-                    <a class="product_a" href="#">ELLERY X M'O CAPSULE</a>
-                    <p class="product_text">Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</p>
-                    <p class="product_price">$52.00</p>
-               </div>
-            </div>
-            <div class="product">
-                <img class="product_img" src="images/men3.png" alt="images first_men">
-                <div class="product__description">
-                    <a class="product_a" href="#">ELLERY X M'O CAPSULE</a>
-                    <p class="product_text">Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</p>
-                    <p class="product_price">$52.00</p>
-               </div>
-            </div>
-            <div class="product">
-                <img class="product_img" src="images/women2.png" alt="images first_men">
-                <div class="product__description">
-                    <a class="product_a" href="#">ELLERY X M'O CAPSULE</a>
-                    <p class="product_text">Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</p>
-                    <p class="product_price">$52.00</p>
-               </div>
-            </div>
-            <div class="product">
-                <img class="product_img" src="images/women3.png" alt="images first_men">
-                <div class="product__description">
-                    <a class="product_a" href="#">ELLERY X M'O CAPSULE</a>
-                    <p class="product_text">Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.</p>
-                    <p class="product_price">$52.00</p>
-               </div>
-            </div>
-
-        </div>
-
-        <button class="button">Browse All Product</button>
+    <div class="content center"></div>
+    <div class="cart center"></div>
 
 
-    </div> -->
-    <div class="content"></div>
     <script src="dataHW.js"></script>
     <script>
 
         // взяли данные из js
         const dataProductsJS = JSON.parse(dataProducts);
-        console.log(dataProductsJS);
 
         const contentEl = document.querySelector('.content');
-
-        const headingEl = document.createElement('h1');
-        headingEl.classList.add('title');
-        headingEl.textContent = "Fetured Items";
-        const headingTextEl = document.createElement('p');
-        headingTextEl.classList.add('title_text');
-        headingTextEl.textContent = "Shop for items based on what we featured in this week";
         
-        const productsEl = document.createElement('div');
-        productsEl.classList.add('products');
+        createSale();
 
-        contentEl.appendChild(headingEl);
-        contentEl.appendChild(headingTextEl);
-        contentEl.appendChild(productsEl);
+        //формирование раздела "Товары"
+        function createSale(params) {
 
-        dataProductsJS.forEach(product => {
-           
+            const headingEl = document.createElement('h1');
+            headingEl.classList.add('title');
+            headingEl.textContent = "Fetured Items";
+            const headingTextEl = document.createElement('p');
+            headingTextEl.classList.add('title_text');
+            headingTextEl.textContent = "Shop for items based on what we featured in this week";
+        
+            const productsEl = document.createElement('div');
+            productsEl.classList.add('products');
 
-            const productEl = document.createElement('div');
-            productEl.classList.add('product');
+            contentEl.appendChild(headingEl);
+            contentEl.appendChild(headingTextEl);
+            contentEl.appendChild(productsEl);
 
-            const imageEl = document.createElement('img');
-            imageEl.classList.add('product_img');
-            imageEl.src = product.image;
-            const altImage = `image`;
-            imageEl.setAttribute('alt', altImage); 
-
-            const product__descriptionEl = document.createElement('div');
-            product__descriptionEl.classList.add('product__description');
-
-            const titleEl = document.createElement('a');
-            titleEl.classList.add('product_a');
-            titleEl.href = "#";
-            titleEl.textContent = product.title;
-
-            const pEl = document.createElement('p');
-            pEl.classList.add('product_text');
-            pEl.textContent = product.text;
-
-            const product_priceEl = document.createElement('p');
-            product_priceEl.classList.add('product_price');
-            product_priceEl.textContent = `${product.currency} ${product.Price}`;
-
+            dataProductsJS.forEach(product => {
             
-            productsEl.appendChild(productEl);
-            productEl.appendChild(imageEl);
-            productEl.appendChild(product__descriptionEl);
-            product__descriptionEl.appendChild(titleEl);
-            product__descriptionEl.appendChild(pEl);
-            product__descriptionEl.appendChild(product_priceEl);
+
+                const productEl = document.createElement('div');
+                productEl.classList.add('product');
+                productEl.id = product.id;
+
+                const prodButtonEl = document.createElement('a');
+                prodButtonEl.classList.add('prod');
+                prodButtonEl.classList.add('prod_Add');
+                prodButtonEl.href = "#";
+                // prodButtonEl.textContent = product.title;
+           
+                const imageEl = document.createElement('img');
+                imageEl.classList.add('product_img');
+                imageEl.src = product.image;
+                const altImage = `image`;
+                imageEl.setAttribute('alt', altImage); 
+                prodButtonEl.append(imageEl);
+
+                const product__descriptionEl = document.createElement('div');
+                product__descriptionEl.classList.add('product__description');
+
+                const titleEl = document.createElement('a');
+                titleEl.classList.add('product_a');
+                titleEl.href = "#";
+                titleEl.textContent = product.title;
+
+                const pEl = document.createElement('p');
+                pEl.classList.add('product_text');
+                pEl.textContent = product.text;
+
+                const idEl = document.createElement('p');
+                idEl.classList.add('id');
+                idEl.textContent = product.id;
+
+                const product_priceEl = document.createElement('p');
+                product_priceEl.classList.add('product_price');
+                product_priceEl.textContent = `${product.currency} ${product.Price}`;
+            
+                productsEl.appendChild(productEl);
+                productEl.appendChild(prodButtonEl);
+                productEl.appendChild(product__descriptionEl);
+                product__descriptionEl.appendChild(titleEl);
+                product__descriptionEl.appendChild(pEl);
+                product__descriptionEl.appendChild(product_priceEl);
+                product__descriptionEl.appendChild(idEl);
+
         });
 
         const buttonEl = document.createElement('button');
@@ -136,8 +95,170 @@
         buttonEl.textContent = "Browse All Product";
 
         contentEl.appendChild(buttonEl);
+        }
+
+        // обработчик нажатия на добавление товара в корзину
+        const addCart = document.querySelectorAll('.prod_Add'); //взяли все продукты 
+        // проходим по продуктам и берём родителя выбранного
+        addCart.forEach(element => {
+            element.addEventListener('click', function(e) {
+                searchIdProduct(element.parentNode);    // в метод для сохранения id
+            });
+        });
+        
+        //нашли id нажатого товара
+        function searchIdProduct(product) {
+            const prod = product.querySelector('.id')
+            const id = prod.textContent;
+            cartContent(id);
+        }
+
+        // формируем дополнительный div для корзины по полученному id
+        function cartContent(id) {
+            const cartContentEl = document.querySelector('.cart');
+            const serchEl = document.querySelector('.cart_title');
+            let count = 1;
+            // если ещё в корзине ничего нет создаём заглавие и формируем карточку в методе
+            if (!serchEl) {
+
+                const headingEl = document.createElement('h2');
+                headingEl.classList.add('cart_title');
+                headingEl.textContent = "Cart Items";
+                cartContentEl.appendChild(headingEl);
+                
+                addProductToCart(id, count);
+                
+            } else {
+                // если уже корзина создана
+                const cartProductEl = document.querySelectorAll('.cart_product');
+
+                // проходим по всем товарам в разделе корзина
+                cartProductEl.forEach(product => {
+                    // если такой товар уже есть в корзине
+                    if (product.id === id) {
+                        const valueEl = product.querySelector('.description__input');
+                        let count = valueEl.value++;
+                        // valueEl.value = a;
+                        return valueEl.value;
+                    } else {
+                        addProductToCart(id, count);
+                    }
+                    
+                });
+
+            }
+        }
+
+        function addProductToCart(id, count) {
+
+            const cartContentEl = document.querySelector('.cart');
+
+            const cartEl = document.createElement('div');
+            cartEl.classList.add('cart_product');
+            // cartContentEl.appendChild(headingEl);
+            cartContentEl.appendChild(cartEl);
+               
+            dataProductsJS.forEach(product => {
+                if(product.id === Number(id)){
+
+                    cartEl.id = product.id;
+                    const closeEl = document.createElement('a');
+                    closeEl.classList.add('close');
+                    closeEl.href = "#";
+
+                    const imageCloseEl = document.createElement('img');
+                    imageCloseEl.classList.add('img_close');
+
+                    imageCloseEl.src = "img/Vector.png";
+                    const altCloseImage = `close`;
+                    imageCloseEl.setAttribute('alt', altCloseImage); 
+                    closeEl.append(imageCloseEl);
+                    cartEl.appendChild(closeEl);
+
+                    const cartButtonEl = document.createElement('a');
+                    cartButtonEl.classList.add('productCart__image');
+                    cartButtonEl.href = "#";
+
+                    const imageEl = document.createElement('img');
+                    imageEl.classList.add('img_cart');
+
+                    imageEl.src = product.image;
+                    const altImage = `image`;
+                    imageEl.setAttribute('alt', altImage); 
+                    cartButtonEl.append(imageEl);
+                    cartEl.appendChild(cartButtonEl);
+
+                    const cartDescriptionEl = document.createElement('div');
+                    cartDescriptionEl.classList.add('cart_product_description');
+                    cartEl.appendChild(cartDescriptionEl);
+
+                    const descriptionHeadingEl = document.createElement('div');
+                    descriptionHeadingEl.classList.add('description_heading');
+                    cartDescriptionEl.appendChild(descriptionHeadingEl);
+
+                    const titleEl = document.createElement('a');
+                    titleEl.classList.add('description_heading__title');
+                    titleEl.href = "#";
+                    titleEl.textContent = product.title;
+                    descriptionHeadingEl.appendChild(titleEl);
+                    
+                    const priceEl = document.createElement('p');
+                    priceEl.classList.add('description__text');
+                    priceEl.textContent = "Price: ";
+
+                    const spanCurrencyEl = document.createElement('span');
+                    spanCurrencyEl.classList.add('text_span_currency');
+                    spanCurrencyEl.textContent = product.currency;
+
+                    const priceSpanEl = document.createElement('span');
+                    priceSpanEl.classList.add('text_span_price');
+                    priceSpanEl.textContent = product.Price;
+
+                    cartDescriptionEl.appendChild(priceEl);
+                    priceEl.appendChild(spanCurrencyEl);
+                    priceEl.appendChild(priceSpanEl);
+
+                    const colorEl = document.createElement('p');
+                    colorEl.classList.add('description__text');
+                    colorEl.textContent = "Color: ";
+
+                    const spanColorEl = document.createElement('span');
+                    spanColorEl.classList.add('text_span_color');
+                    spanColorEl.textContent = product.color;
+                    cartDescriptionEl.appendChild(colorEl);
+                    colorEl.appendChild(spanColorEl);
+
+                    const sizeEl = document.createElement('p');
+                    sizeEl.classList.add('description__text');
+                    sizeEl.textContent = "Size: ";
+
+                    const spanSizeEl = document.createElement('span');
+                    spanSizeEl.classList.add('text_span_color');
+                    spanSizeEl.textContent = product.size;
+                    cartDescriptionEl.appendChild(sizeEl);
+                    sizeEl.appendChild(spanSizeEl);
+
+                    const quantityEl = document.createElement('p');
+                    quantityEl.classList.add('description__text');
+                    quantityEl.textContent = "Quantity: ";
+
+                    const inputEl = document.createElement('input');
+                    inputEl.classList.add('description__input');
+                    inputEl.type = "number";
+                    inputEl.value = count;
+
+                    // inputQuantityEl.value = product.Quantity;
+                    cartDescriptionEl.appendChild(quantityEl);
+                    quantityEl.appendChild(inputEl);
+                    
+                }
+                
+                    
+            });
+
+        }
 
     </script>
-    
+ 
 </body>
 </html>

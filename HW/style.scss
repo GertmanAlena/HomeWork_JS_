@@ -1,3 +1,12 @@
+@import 'mixins';
+@import 'vars';
+a{
+  text-decoration: none;
+}
+.center {
+  @include centerCalc($widthSite);
+}
+
 /* Указываем box sizing */
 *,
 *::before,
@@ -117,6 +126,9 @@ select {
                 color: #F16D7F;
                 font-size: 16px;
             }
+            .id{
+              display: none; 
+            }
     
         }
     }
@@ -130,4 +142,122 @@ select {
         border-color: #F26376;
     }
 }
+/*затемнение с ярлыком начало*/
+.prod {
+  position: relative;
+}
 
+.prod:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+  opacity: 0;
+}
+
+.prod:before {
+  @include centerFlex(center);
+  content: url(img/Add_to_cart.png);
+  position: absolute;
+  @include objectPosition(0, 0, 0, 0);
+  opacity: 0;
+}
+
+.prod:hover:before,
+.prod:hover:after {
+  opacity: 1;
+  transition: 1s;
+}
+
+.info_slyle_footer:hover {
+  transform: scale(1.2);
+  color: cornflowerblue;
+}
+
+//корзина
+.cart {
+  padding-bottom: 100px;
+
+  &_title {
+    text-align: center;
+    padding-bottom: 64px;
+  }
+
+  &_product{
+    display: flex;
+    align-items: center;
+    box-shadow: 17px 19px 24px 0px rgba(0, 0, 0, 0.13);
+    margin-top: 20px;
+    // padding: 40px;
+    width: 652px;
+    height: 306px;
+    position: relative;
+
+    .img_cart{
+      width: 262px;
+      height: 306px;
+    }
+    .close{
+      position: absolute;
+      left: 609px;
+      top: 24px;
+    }
+    .img_close{
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &_product_description{
+    padding: 31px 22px 97px 62px;
+
+    .description_heading{
+      padding-bottom: 42px;
+      margin-right: 54px;
+      padding-top: 22px;
+      
+      &__title{
+        color: rgb(34, 34, 34);
+        font-family: Lato;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 29px;
+        letter-spacing: 0%;
+        text-align: left;
+        
+      }
+    }  
+    .description__text{
+      font-family: Lato;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 26px;
+      letter-spacing: 0%;
+      text-align: left;
+      padding-bottom: 6px;
+
+      .text_span_currency, .text_span_price{
+        color: rgb(239, 91, 112);
+      }
+      .text_span_color {
+        color: rgb(111, 110, 110)
+      }
+      
+    }
+    .description__input{
+      width: 44px;
+      text-align: center;
+      padding-left: 7px;
+    }
+
+    
+  }
+
+
+
+
+
+}
